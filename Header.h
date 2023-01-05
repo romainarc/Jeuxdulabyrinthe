@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 //constantes 
 #define TAILLEPLATEAU 7
@@ -17,6 +18,7 @@ struct Tuile {
 
 	char type; // type de la tuile (t, l, i, T, L)
 	int angle; // orientation de la tuile (0, 90, 180, 270)
+    //todo: creer un attribut tresor (char)
 };
 
 //prototypes de Plateau.c

@@ -11,5 +11,6 @@ int main() {
 	initPlateau(tabTuilesMobiles, plateau); //remplissage aléatoire avec les tuiles dispo
 	afficherPlateau(plateau); //affichage du plateau de jeu après les opérations logiques
 
+    system("PAUSE");
 	return 0;
 }

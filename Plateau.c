@@ -102,7 +102,9 @@ void pivoterTuile180(char tuile[3][3])
 
 void initPlateau(Tuile tabTuilesMobiles[TUILEMOBILE], Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU])
 {
+    srand(time(0));
 	int i;
+
 	for (i = 0; i <= 5; i++) {
 		tabTuilesMobiles[i].type = 'T';
         tabTuilesMobiles[i].angle = rand() % 4*90;
