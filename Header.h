@@ -22,6 +22,8 @@ struct Tuile {
 };
 
 //prototypes de Plateau.c
+void menu();
+void nbjoeur();
 void creationPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
 void afficherPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
 void pivoterTuile90(char tuile[3][3]);

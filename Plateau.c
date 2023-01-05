@@ -1,5 +1,53 @@
 ﻿#include "Header.h"
 
+void menu(void) {
+    int choix;
+
+    do {
+        printf("--- Menu ---\n");
+        printf("1. Lancer une nouvelle partie\n");
+        printf("2. Reprendre une partie enregistrée\n");
+        printf("3. Quitter le jeu\n");
+        printf("Votre choix ? ");
+        scanf("%d", &choix);
+    } while (choix != 1 && choix != 2 && choix != 3);
+
+    if (choix == 1) {
+        printf("Lancement d'une nouvelle partie...\n");
+        nbjoeur();
+        //tab contenant toutes les tuiles mobiles
+        Tuile tabTuilesMobiles[TUILEMOBILE];
+
+        //Matrice de toutes les tuiles
+        Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+
+        creationPlateau(plateau); //pose des tuiles fixes
+        initPlateau(tabTuilesMobiles, plateau); //remplissage aléatoire avec les tuiles dispo
+        afficherPlateau(plateau); //affichage du plateau de jeu après les opérations logiques
+
+        // Code pour lancer une nouvelle partie ici
+    } else if (choix == 2) {
+        printf("Reprise d'une partie enregistrée...\n");
+        // Code pour reprendre une partie enregistrée ici
+    } else {
+        printf("Au revoir !\n");
+    }
+
+}
+
+
+void nbjoeur() {
+    int nb_joueurs;
+
+    do {
+        printf("Combien de joueurs pour cette partie (1-4) ? ");
+        scanf("%d", &nb_joueurs);
+    } while (nb_joueurs < 1 || nb_joueurs > 4);
+
+    printf("La partie sera donc jouée par %d joueurs.\n", nb_joueurs);
+
+}
+
 void creationPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU])
 {
 	//Plateau des tuiles fixes
