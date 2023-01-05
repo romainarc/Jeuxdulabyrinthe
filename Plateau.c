@@ -2,8 +2,6 @@
 
 void creationPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU])
 {
-
-
 	//Plateau des tuiles fixes
 	const char plateauTuilesBase[TAILLEPLATEAU][TAILLEPLATEAU] = {
    {'L', ' ', 'T', ' ', 'T', ' ', 'L'},
@@ -106,19 +104,41 @@ void initPlateau(Tuile tabTuilesMobiles[TUILEMOBILE], Tuile plateau[TAILLEPLATEA
 {
 	int i;
 	for (i = 0; i <= 5; i++) {
-		tabTuilesMobiles[i].type = "T";
-	}
+		tabTuilesMobiles[i].type = 'T';
+        tabTuilesMobiles[i].angle = rand() % 4*90;
+    }
 	for (i = 6; i <= 11; i++) {
-		tabTuilesMobiles[i].type = "L";
-	}
+		tabTuilesMobiles[i].type = 'L';
+        tabTuilesMobiles[i].angle = rand() % 4*90;
+    }
 	for (i = 12; i <= 21; i++) {
-		tabTuilesMobiles[i].type = "l";
-	}
+		tabTuilesMobiles[i].type = 'l';
+        tabTuilesMobiles[i].angle = rand() % 4*90;
+    }
 	for (i = 22; i <= 33; i++) {
-		tabTuilesMobiles[i].type = "i";
-	}
+        tabTuilesMobiles[i].type = 'i';
+        tabTuilesMobiles[i].angle = rand() % 4 * 90;
+    }
 
-	//mélange aléatoire du sac de tuile à poser 
+    int compteur = 0;
+
+    for (int i = 0; i < TAILLEPLATEAU; i++) {
+        for (int j = 0; j < TAILLEPLATEAU; j++) {
+            if(plateau[i][j].type == ' '){
+                plateau[i][j] = tabTuilesMobiles[compteur];
+                compteur++;
+
+            }
+        }
+    }
+
+
+
+
+
+
+
+//mélange aléatoire du sac de tuile à poser
 
 }
 
