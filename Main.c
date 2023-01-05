@@ -9,7 +9,7 @@ int main() {
 
 	creationPlateau(plateau); //pose des tuiles fixes
 	initPlateau(tabTuilesMobiles, plateau); //remplissage aléatoire avec les tuiles dispo
-	//afficherPlateau(plateau); //affichage du plateau de jeu après les opérations logiques
+	afficherPlateau(plateau); //affichage du plateau de jeu après les opérations logiques
 
 	return 0;
 }

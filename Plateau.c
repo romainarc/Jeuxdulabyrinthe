@@ -2,40 +2,7 @@
 
 void creationPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU])
 {
-	//tuile en forme de t sans trésor
-	const char tuilet[3][3] = {
-	{219, 219, 219},
-	{' ', ' ', ' '},
-	{219, ' ', 219}
-	};
 
-	//tuile en forme de l sans trésor
-	const char tuilel[3][3] = {
-   {219, ' ', 219},
-   {219, ' ', ' '},
-   {219, 219, 219}
-	};
-
-	//tuile en forme de i sans trésor
-	const char tuilei[3][3] = {
-   {219, ' ', 219},
-   {219, ' ', 219},
-   {219, ' ', 219}
-	};
-
-	//tuile en forme de T avec trésor
-	const char tuileT[3][3] = {
-	{219, 219, 219},
-	{' ', 'T', ' '},
-	{219, ' ', 219}
-	};
-
-	//tuile en forme de L avec trésor
-	const char tuileL[3][3] = {
-	{219, ' ', 219},
-	{219, 'T', ' '},
-	{219, 219, 219}
-	};
 
 	//Plateau des tuiles fixes
 	const char plateauTuilesBase[TAILLEPLATEAU][TAILLEPLATEAU] = {
@@ -67,85 +34,9 @@ void creationPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU])
 			
 
 
-			//char tuileAPoser[3][3];
 
-			////On associe la tuile à poser au modèle de tuile prédéfini sélectionné dans la matrice plateauTuiles
-			//switch (plateauTuiles[i][j])
-			//{
-			//case 't':
-			//	for (int k = 0; k < 3; k++) {
-			//		for (int l = 0; l < 3; l++) {
-			//			tuileAPoser[k][l] = tuilet[k][l];
-			//		}
-			//	}
-			//	break;
-			//case 'l':
-			//	for (int k = 0; k < 3; k++) {
-			//		for (int l = 0; l < 3; l++) {
-			//			tuileAPoser[k][l] = tuilel[k][l];
-			//		}
-			//	}
-			//	break;
-			//case 'i':
-			//	for (int k = 0; k < 3; k++) {
-			//		for (int l = 0; l < 3; l++) {
-			//			tuileAPoser[k][l] = tuilei[k][l];
-			//		}
-			//	}
-			//	break;
-			//case 'T':
-			//	for (int k = 0; k < 3; k++) {
-			//		for (int l = 0; l < 3; l++) {
-			//			tuileAPoser[k][l] = tuileT[k][l];
-			//		}
-			//	}
-			//	break;
-			//case 'L':
-			//	for (int k = 0; k < 3; k++) {
-			//		for (int l = 0; l < 3; l++) {
-			//			tuileAPoser[k][l] = tuileL[k][l];
-			//		}
-			//	}
-			//	break;
-			//case ' ':
-			//	for (int k = 0; k < 3; k++) {
-			//		for (int l = 0; l < 3; l++) {
-			//			tuileAPoser[k][l] = ' ';
-			//		}
-			//	}
-			//	break;
-			//}
-
-			////On effectue la rotation des tuiles à poser en fonction de l'angle défini dans la matrice plateauRotations
-			//switch (plateauRotations[i][j])
-			//{
-			//case 90:
-			//	pivoterTuile90(tuileAPoser);
-			//	break;
-			//case 180:
-			//	pivoterTuile180(tuileAPoser);
-			//	break;
-			//case 270:
-			//	pivoterTuile270(tuileAPoser);
-			//	break;
-			//}
-
-			////on remplie le plateau de jeu avec toutes les tuiles à poser
-			//for (int k = 0; k < 3; k++) {
-			//	for (int l = 0; l < 3; l++) {
-			//		plateau[i * 3 + k][j * 3 + l] = tuileAPoser[k][l];
-			//	}
-			//}
 		}
 	}
-	for (int i = 0; i < TAILLEPLATEAU; i++) {
-		for (int j = 0; j < TAILLEPLATEAU; j++) {
-			printf("%c", plateau[i][j].type);
-			printf(",%d  ", plateau[i][j].angle);
-		}
-		printf("\n");
-	}
-
 }
 
 void pivoterTuile90(char tuile[3][3])
@@ -233,14 +124,119 @@ void initPlateau(Tuile tabTuilesMobiles[TUILEMOBILE], Tuile plateau[TAILLEPLATEA
 
 void afficherPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU])
 {
-	char plateauAffichage[TAILLEPLATEAU * 3][TAILLEPLATEAU * 3]; //tableau d'afficahge des tuiles (21 * 21 char car chaque tuile fait 3 * 3 char)
+    //tuile en forme de t sans trésor
+    const char tuilet[3][3] = {
+            {219, 219, 219},
+            {' ', ' ', ' '},
+            {219, ' ', 219}
+    };
+
+    //tuile en forme de l sans trésor
+    const char tuilel[3][3] = {
+            {219, ' ', 219},
+            {219, ' ', ' '},
+            {219, 219, 219}
+    };
+
+    //tuile en forme de i sans trésor
+    const char tuilei[3][3] = {
+            {219, ' ', 219},
+            {219, ' ', 219},
+            {219, ' ', 219}
+    };
+
+    //tuile en forme de T avec trésor
+    const char tuileT[3][3] = {
+            {219, 219, 219},
+            {' ', 'T', ' '},
+            {219, ' ', 219}
+    };
+
+    //tuile en forme de L avec trésor
+    const char tuileL[3][3] = {
+            {219, ' ', 219},
+            {219, 'T', ' '},
+            {219, 219, 219}
+    };
+
+    char plateauAffichage[TAILLEPLATEAU * 3][TAILLEPLATEAU * 3]; //tableau d'afficahge des tuiles (21 * 21 char car chaque tuile fait 3 * 3 char)
+    char tuileAPoser[3][3];
+
+    for (int i = 0; i < TAILLEPLATEAU; i++) {
+        for (int j = 0; j < TAILLEPLATEAU; j++) {
 
 
+            //On associe la tuile à poser au modèle de tuile prédéfini sélectionné dans la matrice plateauTuiles
+            switch (plateau[i][j].type) {
+                case 't':
+                    for (int k = 0; k < 3; k++) {
+                        for (int l = 0; l < 3; l++) {
+                            tuileAPoser[k][l] = tuilet[k][l];
+                        }
+                    }
+                    break;
+                case 'l':
+                    for (int k = 0; k < 3; k++) {
+                        for (int l = 0; l < 3; l++) {
+                            tuileAPoser[k][l] = tuilel[k][l];
+                        }
+                    }
+                    break;
+                case 'i':
+                    for (int k = 0; k < 3; k++) {
+                        for (int l = 0; l < 3; l++) {
+                            tuileAPoser[k][l] = tuilei[k][l];
+                        }
+                    }
+                    break;
+                case 'T':
+                    for (int k = 0; k < 3; k++) {
+                        for (int l = 0; l < 3; l++) {
+                            tuileAPoser[k][l] = tuileT[k][l];
+                        }
+                    }
+                    break;
+                case 'L':
+                    for (int k = 0; k < 3; k++) {
+                        for (int l = 0; l < 3; l++) {
+                            tuileAPoser[k][l] = tuileL[k][l];
+                        }
+                    }
+                    break;
+                case ' ':
+                    for (int k = 0; k < 3; k++) {
+                        for (int l = 0; l < 3; l++) {
+                            tuileAPoser[k][l] = ' ';
+                        }
+                    }
+                    break;
+            }
 
+            //On effectue la rotation des tuiles à poser en fonction de l'angle défini dans la matrice plateauRotations
+            switch (plateau[i][j].angle) {
+                case 90:
+                    pivoterTuile90(tuileAPoser);
+                    break;
+                case 180:
+                    pivoterTuile180(tuileAPoser);
+                    break;
+                case 270:
+                    pivoterTuile270(tuileAPoser);
+                    break;
+                default:
+                    break;
+            }
 
+            //on remplie le plateau de jeu avec toutes les tuiles à poser
+            for (int k = 0; k < 3; k++) {
+                for (int l = 0; l < 3; l++) {
+                    plateauAffichage[i * 3 + k][j * 3 + l] = tuileAPoser[k][l];
+                }
+            }
+        }
+    }
 
-
-
+    ///AFFICHAGE DU PLATEAU DE JEU///
 	//affichage des flèches du haut :
 	printf("   ");
 	for (int i = 0; i < TAILLEPLATEAU; i++) {
@@ -262,7 +258,7 @@ void afficherPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU])
 			printf("   ");
 		}
 		for (int j = 0; j < TAILLEPLATEAU * 3; j++) {
-			printf("%c", plateau[i][j]);
+			printf("%c", plateauAffichage[i][j]);
 		}
 		printf("\n");
 	}
