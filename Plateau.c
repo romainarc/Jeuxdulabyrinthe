@@ -6,11 +6,12 @@ void menu(void) {
     do {
         printf("--- Menu ---\n");
         printf("1. Lancer une nouvelle partie\n");
-        printf("2. Reprendre une partie enregistrée\n");
+        printf("2. Reprendre une partie enregistree\n");
         printf("3. Quitter le jeu\n");
+        printf("4. afficher les regles du jeu\n");
         printf("Votre choix ? ");
         scanf("%d", &choix);
-    } while (choix != 1 && choix != 2 && choix != 3);
+    } while (choix != 1 && choix != 2 && choix != 3 && choix != 4);
 
     if (choix == 1) {
         printf("Lancement d'une nouvelle partie...\n");
@@ -27,9 +28,13 @@ void menu(void) {
 
         // Code pour lancer une nouvelle partie ici
     } else if (choix == 2) {
-        printf("Reprise d'une partie enregistrée...\n");
+        printf("Reprise d'une partie enregistree...\n");
         // Code pour reprendre une partie enregistrée ici
-    } else {
+    } else if(choix == 4) {
+        printf("le but du jeu est de recolter tous les tresors\n");
+    }
+
+    else {
         printf("Au revoir !\n");
     }
 
@@ -44,7 +49,7 @@ void nbjoeur() {
         scanf("%d", &nb_joueurs);
     } while (nb_joueurs < 1 || nb_joueurs > 4);
 
-    printf("La partie sera donc jouée par %d joueurs.\n", nb_joueurs);
+    printf("La partie sera donc jouee par %d joueurs.\n", nb_joueurs);
 
 }
 
