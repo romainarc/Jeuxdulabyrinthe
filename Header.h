@@ -8,9 +8,6 @@
 #define TAILLEPLATEAU 7
 #define TUILEFIXE 16
 #define TUILEMOBILE 34
-#define NUMcartes 24
-#define ROWS 7
-#define COLS 7
 
 //structure tuile
 typedef struct Tuile Tuile;
@@ -25,19 +22,17 @@ struct Tuile {
 };
 
 //prototypes de Plateau.c
-void menu();
-void nbjoueur();
 void creationPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
 void afficherPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
 void pivoterTuile90(char tuile[3][3]);
 void pivoterTuile180(char tuile[3][3]);
 void pivoterTuile270(char tuile[3][3]);
-void initPlateau(Tuile tabTuilesMobiles[TUILEMOBILE], Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
-void creation_joueur1(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
-void creation_joueur2(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
-void creation_joueur3(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
-void creation_joueur4(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]);
+void initPlateau(Tuile tabTuilesMobiles[TUILEMOBILE], Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU], Tuile tuileRestante);
+void translationColonne (int choixIndex, int choixSens, Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU], Tuile tuileRestante);
+void translationLigne (int choixIndex, int choixSens, Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU], Tuile tuileRestante);
 
-
-void glisserdroite();
-void glisser_droite(int matrix[ROWS][COLS], int row);
+//prototypes de menus.c
+void menuPrincipal();
+int choixNbJoueur();
+void initialisation(Tuile tabTuilesMobiles[TUILEMOBILE], Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU], Tuile tuileRestante);
+void menuIntermediaire(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU], Tuile tuileRestante);

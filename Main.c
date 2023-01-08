@@ -1,7 +1,8 @@
 #include "Header.h"
 
 int main() {
-	menu();
+
+    menuPrincipal();
 
     system("PAUSE");
 	return 0;

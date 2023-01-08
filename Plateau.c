@@ -1,125 +1,5 @@
 ﻿#include "Header.h"
 
-void menu(void) {
-    int choix;
-
-    do {
-        printf("--- Menu ---\n");
-        printf("1. Lancer une nouvelle partie\n");
-        printf("2. Reprendre une partie enregistree\n");
-        printf("3. Quitter le jeu\n");
-        printf("4. afficher les regles du jeu\n");
-        printf("Votre choix ? ");
-        scanf("%d", &choix);
-    } while (choix != 1 && choix != 2 && choix != 3 && choix != 4);
-
-    if (choix == 1) {
-        printf("Lancement d'une nouvelle partie...\n");
-        nbjoueur();
-            //tab contenant toutes les tuiles mobiles
-            Tuile tabTuilesMobiles[TUILEMOBILE];
-
-            //Matrice de toutes les tuiles
-            Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
-
-            creationPlateau(plateau); //pose des tuiles fixes
-            initPlateau(tabTuilesMobiles, plateau); //remplissage aléatoire avec les tuiles dispo
-            afficherPlateau(plateau); //affichage du plateau de jeu après les opérations logiques
-
-        // Code pour lancer une nouvelle partie ici
-    } else if (choix == 2) {
-        printf("Reprise d'une partie enregistree...\n");
-        // Code pour reprendre une partie enregistrée ici
-    } else if(choix == 4) {
-        printf("le but du jeu est de recolter tous les tresors\n");
-    }
-
-    else {
-        printf("Au revoir !\n");
-    }
-
-}
-
-void nbjoueur() {
-    int nb_joueurs;
-
-    do {
-        printf("Combien de joueurs pour cette partie (1-4) ? ");
-        scanf("%d", &nb_joueurs);
-        if(nb_joueurs == 1){
-            Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
-            creation_joueur1(plateau);
-        }
-        if(nb_joueurs == 2){
-            Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
-            creation_joueur1(plateau);
-            creation_joueur2(plateau);
-        }
-
-        if(nb_joueurs == 3){
-            Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
-            creation_joueur1(plateau);
-            creation_joueur2(plateau);
-            creation_joueur3(plateau);
-        }
-        if(nb_joueurs == 4){
-            Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
-            creation_joueur1(plateau);
-            creation_joueur2(plateau);
-            creation_joueur3(plateau);
-            creation_joueur4(plateau);
-        }
-    } while (nb_joueurs < 1 || nb_joueurs > 4);
-
-    printf("La partie sera donc jouee par %d joueurs.\n", nb_joueurs);
-
-    int nbcartes = NUMcartes / nb_joueurs;
-    int reste = NUMcartes % nb_joueurs;
-    for (int i = 1; i <= nb_joueurs; i++) {
-        printf("Joueur %d : %d cartes", i, nbcartes);
-        if (reste > 0) {
-            printf(" et 1 carte supplémentaire");
-            reste--;
-        }
-        printf("\n");
-    }
-
-
-}
-
-void creation_joueur1(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]){
-        struct Tuile j1 = j1;
-        plateau[TAILLEPLATEAU][TAILLEPLATEAU];
-        plateau[0][0] = j1; // Remplace la valeur à la position [1][1] par 'j1'
-        printf("%c\n", plateau[0][0]); // Imprime "j1" sur une ligne
-
-}
-
-void creation_joueur2(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]){
-    struct Tuile j2 = j2;
-    plateau[TAILLEPLATEAU][TAILLEPLATEAU];
-    plateau[0][6] = j2; // Remplace la valeur à la position [1][1] par 'j1'
-    printf("%c\n", plateau[0][6]); // Imprime "j1" sur une ligne
-
-}
-void creation_joueur3(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]){
-    struct Tuile j3 = j3;
-    plateau[TAILLEPLATEAU][TAILLEPLATEAU];
-    plateau[6][0] = j3; // Remplace la valeur à la position [1][1] par 'j1'
-    printf("%c\n", plateau[6][0]); // Imprime "j1" sur une ligne
-
-}
-
-void creation_joueur4(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]){
-    struct Tuile j4 = j4;
-    plateau[TAILLEPLATEAU][TAILLEPLATEAU];
-    plateau[6][6] = j4; // Remplace la valeur à la position [1][1] par 'j1'
-    printf("%c\n", plateau[6][6]); // Imprime "j1" sur une ligne
-
-}
-
-
-
 void creationPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU])
 {
 	//Plateau des tuiles fixes
@@ -220,7 +100,7 @@ void pivoterTuile180(char tuile[3][3])
 	}
 }
 
-void initPlateau(Tuile tabTuilesMobiles[TUILEMOBILE], Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]) {
+void initPlateau(Tuile tabTuilesMobiles[TUILEMOBILE], Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU], Tuile tuileRestante) {
     srand(time(0));
     int i;
 
@@ -264,8 +144,8 @@ void initPlateau(Tuile tabTuilesMobiles[TUILEMOBILE], Tuile plateau[TAILLEPLATEA
                 }
             }
         }
+        tuileRestante = tabTuilesMobiles[TUILEMOBILE-1]; //on stocke la tuile restante
     }
-
 
 void afficherPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]) {
         //tuile en forme de t sans trésor
@@ -288,7 +168,6 @@ void afficherPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]) {
                 {219, ' ', 219},
                 {219, ' ', 219}
         };
-
 
         //tuile en forme de T avec trésor
         const char tuileT[3][3] = {
@@ -420,4 +299,52 @@ void afficherPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]) {
         }
     }
 
+void translationColonne (int choixIndex, int choixSens, Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU], Tuile tuileRestante)
+{
+    int i;
+    Tuile temp[TAILLEPLATEAU];
 
+    if(choixSens == 0){ //le sens de deplacement devient -1 ou 1 (haut ou bas)
+        choixSens = -1;
+    }
+
+    for(i=0; i<TAILLEPLATEAU; i++){
+        temp[i] = plateau[i][choixIndex*2+1];
+    }
+    if(choixSens == -1){ //vers le haut
+        for(i=0; i<TAILLEPLATEAU - 1; i++){
+            plateau[i][choixIndex*2+1] = temp[i+1];
+        }
+        plateau[TAILLEPLATEAU-1][choixIndex*2+1] = tuileRestante;
+    }else{ //vers le bas
+        plateau[0][choixIndex*2+1] = tuileRestante;
+        for(i=1; i<TAILLEPLATEAU ; i++){
+            plateau[i][choixIndex*2+1] = temp[i-1];
+        }
+    }
+}
+
+void translationLigne (int choixIndex, int choixSens, Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU], Tuile tuileRestante)
+{
+    int i;
+    Tuile temp[TAILLEPLATEAU];
+
+    if(choixSens == 0){ //le sens de deplacement devient -1 ou 1 (gauche ou droite)
+        choixSens = -1;
+    }
+
+    for(i=0; i<TAILLEPLATEAU; i++){
+        temp[i] = plateau[choixIndex*2+1][i];
+    }
+    if(choixSens == -1){ //vers le haut
+        for(i=0; i<TAILLEPLATEAU - 1; i++){
+            plateau[choixIndex*2+1][i] = temp[i+1];
+        }
+        plateau[choixIndex*2+1][TAILLEPLATEAU-1] = tuileRestante;
+    }else{ //vers le bas
+        plateau[choixIndex*2+1][0] = tuileRestante;
+        for(i=1; i<TAILLEPLATEAU ; i++){
+            plateau[choixIndex*2+1][i] = temp[i-1];
+        }
+    }
+}
