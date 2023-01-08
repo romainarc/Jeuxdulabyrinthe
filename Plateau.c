@@ -15,16 +15,16 @@ void menu(void) {
 
     if (choix == 1) {
         printf("Lancement d'une nouvelle partie...\n");
-        nbjoeur();
-        //tab contenant toutes les tuiles mobiles
-        Tuile tabTuilesMobiles[TUILEMOBILE];
+        nbjoueur();
+            //tab contenant toutes les tuiles mobiles
+            Tuile tabTuilesMobiles[TUILEMOBILE];
 
-        //Matrice de toutes les tuiles
-        Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+            //Matrice de toutes les tuiles
+            Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
 
-        creationPlateau(plateau); //pose des tuiles fixes
-        initPlateau(tabTuilesMobiles, plateau); //remplissage aléatoire avec les tuiles dispo
-        afficherPlateau(plateau); //affichage du plateau de jeu après les opérations logiques
+            creationPlateau(plateau); //pose des tuiles fixes
+            initPlateau(tabTuilesMobiles, plateau); //remplissage aléatoire avec les tuiles dispo
+            afficherPlateau(plateau); //affichage du plateau de jeu après les opérations logiques
 
         // Code pour lancer une nouvelle partie ici
     } else if (choix == 2) {
@@ -40,18 +40,85 @@ void menu(void) {
 
 }
 
-
-void nbjoeur() {
+void nbjoueur() {
     int nb_joueurs;
 
     do {
         printf("Combien de joueurs pour cette partie (1-4) ? ");
         scanf("%d", &nb_joueurs);
+        if(nb_joueurs == 1){
+            Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+            creation_joueur1(plateau);
+        }
+        if(nb_joueurs == 2){
+            Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+            creation_joueur1(plateau);
+            creation_joueur2(plateau);
+        }
+
+        if(nb_joueurs == 3){
+            Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+            creation_joueur1(plateau);
+            creation_joueur2(plateau);
+            creation_joueur3(plateau);
+        }
+        if(nb_joueurs == 4){
+            Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+            creation_joueur1(plateau);
+            creation_joueur2(plateau);
+            creation_joueur3(plateau);
+            creation_joueur4(plateau);
+        }
     } while (nb_joueurs < 1 || nb_joueurs > 4);
 
     printf("La partie sera donc jouee par %d joueurs.\n", nb_joueurs);
 
+    int nbcartes = NUMcartes / nb_joueurs;
+    int reste = NUMcartes % nb_joueurs;
+    for (int i = 1; i <= nb_joueurs; i++) {
+        printf("Joueur %d : %d cartes", i, nbcartes);
+        if (reste > 0) {
+            printf(" et 1 carte supplémentaire");
+            reste--;
+        }
+        printf("\n");
+    }
+
+
 }
+
+void creation_joueur1(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]){
+        struct Tuile j1 = j1;
+        plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+        plateau[0][0] = j1; // Remplace la valeur à la position [1][1] par 'j1'
+        printf("%c\n", plateau[0][0]); // Imprime "j1" sur une ligne
+
+}
+
+void creation_joueur2(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]){
+    struct Tuile j2 = j2;
+    plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+    plateau[0][6] = j2; // Remplace la valeur à la position [1][1] par 'j1'
+    printf("%c\n", plateau[0][6]); // Imprime "j1" sur une ligne
+
+}
+void creation_joueur3(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]){
+    struct Tuile j3 = j3;
+    plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+    plateau[6][0] = j3; // Remplace la valeur à la position [1][1] par 'j1'
+    printf("%c\n", plateau[6][0]); // Imprime "j1" sur une ligne
+
+}
+
+void creation_joueur4(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]){
+    struct Tuile j4 = j4;
+    plateau[TAILLEPLATEAU][TAILLEPLATEAU];
+    plateau[6][6] = j4; // Remplace la valeur à la position [1][1] par 'j1'
+    printf("%c\n", plateau[6][6]); // Imprime "j1" sur une ligne
+
+}
+
+
 
 void creationPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU])
 {
@@ -200,10 +267,6 @@ void initPlateau(Tuile tabTuilesMobiles[TUILEMOBILE], Tuile plateau[TAILLEPLATEA
     }
 
 
-
-
-        //mélange aléatoire du sac de tuile à poser
-
 void afficherPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]) {
         //tuile en forme de t sans trésor
         const char tuilet[3][3] = {
@@ -225,6 +288,7 @@ void afficherPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]) {
                 {219, ' ', 219},
                 {219, ' ', 219}
         };
+
 
         //tuile en forme de T avec trésor
         const char tuileT[3][3] = {
@@ -355,4 +419,5 @@ void afficherPlateau(Tuile plateau[TAILLEPLATEAU][TAILLEPLATEAU]) {
             }
         }
     }
+
 
